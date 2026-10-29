@@ -99,7 +99,7 @@ fn parse_nvidia_smi_data(output: &str) -> Vec<RpcGpu> {
 /// `nvidia-smi` reports unavailable or deprecated fields as bracketed status
 /// text, such as `[N/A]` or `[Requested functionality has been deprecated]`.
 fn is_nvidia_smi_placeholder(value: &str) -> bool {
-    value.starts_with('[') && value.ends_with(']')
+    value == "N/A" || (value.starts_with('[') && value.ends_with(']'))
 }
 
 /// Prefer the application clock so existing instance-type filters keep
